@@ -1,5 +1,8 @@
-*!
 build
 dist
-#*
 uni2ascii_janin.egg-info
+*#
+.#*
+._*
+*~
+*.pyc

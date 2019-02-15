@@ -7,7 +7,7 @@ There are many unicode glyphs whose appearance is very similar to ASCII characte
     > echo і lоѵе üńісοdе | uni2ascii
     i love unicode
 
-The default action is to leave in any non-ascii that `uni2ascii.py` doesn't know about. This can be overridden with command line arguments. Call `uni2ascii -h` for help.
+The default action is to leave untouched any non-ascii that `uni2ascii.py` doesn't know about. This can be overridden with command line arguments. Call `uni2ascii -h` for help.
 
 You can also call from python:
 
@@ -16,9 +16,11 @@ You can also call from python:
 
 It's quite easy to add new transliterations. See the function `get_translits` in `__init__.py`. Feel free to contact me or do a pull request if you find useful ones that aren't there.
 
-## NOTES:
+## Notes
 
 `uni2ascii` was written to handle particular data we had on hand. There are plenty of missing transliterations. I'm happy to add new ones!
+
+Input encoding must be utf-8.
 
 Feel free to modify - it's not likely it'll work exactly correctly for you out of the box.
 
@@ -26,9 +28,13 @@ The code should work in python2 or python3.
 
 This was not designed to thwart homograph attacks, but rather to help with text normalization of English, where unicode sometimes sneaks in.
 
+## Install
+
+    pip install uni2ascii
+
 ## Alternatives
 
-### The Python module `unidecode`.
+### The Python module `unidecode`
 
 Very similar in spirit, but doesn't handle punctuation and makes some choices I disagree with.
 

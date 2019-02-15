@@ -1,11 +1,25 @@
 # -*- coding: utf-8 -*-
 #
-# Convert unicode to the closest ascii equivalent.
+# Convert unicode (encoded as utf-8) to the closest ascii equivalent.
 #
 # See README.md for more information.
 #
 # See LICENSE for licensing information.
 #
+#
+# The basic idea is to assemble a regular expression that detects
+# unicode that we know about. This happens the first time uni2ascii is
+# called.
+#
+# Most of the meat is in setting up this regular expression, which
+# happens in get_translits(). If you find new transliterations, you'd
+# add them to get_translits().
+#
+# Note: I added transliterations and normalizations as I found them in
+# our data by copying/pasting into get_translits() below. There are
+# surely many more that aren't there yet.  I'm happy to add more!
+#
+
 
 import re
 
@@ -15,7 +29,7 @@ name = 'uni2ascii'
 class Global:
     """Stores globals. There should be no instances of Global."""
 
-    # Map of unicode=>ascii transliterations. Loaded the first time uni2ascii is called.
+    # Map of utf-8=>ascii transliterations. Loaded the first time uni2ascii is called.
     translits = None
 
     # Regexp of lhs of translits. Loaded the first time uni2ascii is called.
@@ -183,24 +197,24 @@ def get_translits():
         (lhs, rhs) = line.split()
         ret[lhs] = rhs
 
-    # Handle some special cases. These were found in our data. There are
-    # probably more.
+    # The following are various width spaces with various other
+    # interpretations (e.g. non-breaking). We render all these as a
+    # single space. A codepoint goes here if it separates a word but
+    # renders with no pixels, even if it's zero width.
 
-    # "Object Replacement Character". Probably noise. Just remove.
-    ret['\xef\xbf\xbc'] = ''
+    whites = """ : : : : : : : : :​:‌:‍:⁠: : :　:﻿"""
 
-    # Data link escape. Probably noise. Just remove.
-    ret['\020'] = ''
+    for sp in whites.split(':'):
+        ret[sp] = ' '
 
-    # "Delete". Just remove.
-    ret['\177'] = ''
+    # The following are very thin spaces. They seem to be used for
+    # kerning rather than word separation, so we map them to
+    # nothing. YMMV.
 
-    # Zero width non-breaking space. Wha?
-    ret['\357\273\277'] = ''
+    nothings = """ : """
 
-    # Not sure, but renders as whitespace.
-    ret['\342\200\216'] = ' '
-    ret['\342\200\213'] = ' '
+    for sp in nothings.split(':'):
+        ret[sp] = ''
 
     return ret
 # end translits()
