@@ -50,7 +50,7 @@ def uni2ascii(line):
                                                    sorted(Global.translits.keys(),
                                                           key=len,
                                                           reverse=True))))
-    return re.sub(Global.unicodere, lambda mo: Global.translits[mo.group()], line).strip()
+    return re.sub(Global.unicodere, lambda mo: Global.translits[mo.group()], line)
 # end uni2ascii()
 
 
