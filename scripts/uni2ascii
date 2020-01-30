@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Convert unicode to the closest ascii equivalent.
+# Convert unicode (utf8) to the closest ascii equivalent.
 #
 # See README.md for more information.
 #
@@ -17,7 +17,7 @@ import sys
 
 from uni2ascii import uni2ascii
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 
 
 class Global:
@@ -57,7 +57,7 @@ def main(argv):
 
 def parse_arguments(strs):
     parser = argparse.ArgumentParser(
-        description="Replace unicode characters that look similar to ASCII with their nearest ASCII equivalent. Version {VERSION}.".format(VERSION=VERSION))
+        description="Replace utf8 characters that look similar to ASCII with their nearest ASCII equivalent. Version {VERSION}.".format(VERSION=VERSION))
     parser.add_argument('-loglevel',
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
                         default='WARNING',

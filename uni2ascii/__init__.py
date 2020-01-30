@@ -22,6 +22,7 @@
 
 
 import re
+import unicodedata
 
 name = 'uni2ascii'
 
@@ -50,7 +51,9 @@ def uni2ascii(line):
                                                    sorted(Global.translits.keys(),
                                                           key=len,
                                                           reverse=True))))
-    return re.sub(Global.unicodere, lambda mo: Global.translits[mo.group()], line)
+    return re.sub(Global.unicodere,
+                  lambda mo: Global.translits[mo.group()],
+                  unicodedata.normalize('NFC', line))
 # end uni2ascii()
 
 
@@ -195,7 +198,7 @@ def get_translits():
         if line.startswith('#') or line == '':
             continue
         (lhs, rhs) = line.split()
-        ret[lhs] = rhs
+        ret[unicodedata.normalize('NFC', lhs)] = rhs
 
     # The following are various width spaces with various other
     # interpretations (e.g. non-breaking). We render all these as a

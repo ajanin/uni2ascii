@@ -14,7 +14,7 @@ You can also call from python:
     from uni2ascii import uni2ascii
     ascii_string = uni2ascii('і lоѵе üńісοdе')
 
-It's quite easy to add new transliterations. See the function `get_translits` in `__init__.py`. Feel free to contact me or do a pull request if you find useful ones that aren't there.
+It's quite easy to add new transliterations by just copying and pasting offending strings into the code. See the function `get_translits()` in `__init__.py`. Feel free to contact me or do a pull request if you find useful ones that aren't there.
 
 ## Notes
 
@@ -24,7 +24,7 @@ Input encoding must be utf-8.
 
 Feel free to modify - it's not likely it'll work exactly correctly for you out of the box.
 
-The code should work in python2 or python3.
+The code will no longer work in python2 -- I added some unicode normalization from `unicodedata` and haven't quite figured out how to make it work in python2 and python3 simultaneously.
 
 This was not designed to thwart homograph attacks, but rather to help with text normalization of English, where unicode sometimes sneaks in.
 
