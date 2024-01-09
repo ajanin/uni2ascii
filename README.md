@@ -30,7 +30,12 @@ This was not designed to thwart homograph attacks, but rather to help with text 
 
 ## Install
 
-    pip install uni2ascii
+    pip install uni2ascii-janin
+
+For the most up to date:
+
+    pip install git+https://github.com/ajanin/uni2ascii.git
+
 
 ## Alternatives
 

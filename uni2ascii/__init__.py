@@ -67,6 +67,7 @@ def get_translits():
 ²       2
 ³       3
 ´       '
+Α       A
 À       A
 Á       A
 Â       A
@@ -74,6 +75,7 @@ def get_translits():
 Ä       A
 Å       A
 Æ       AE
+Β       B
 Ç       C
 È       E
 É       E
@@ -84,6 +86,7 @@ def get_translits():
 Î       I
 Ï       I
 Ð       D
+Μ       M
 Ñ       N
 Ò       O
 Ó       O
