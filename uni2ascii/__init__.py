@@ -24,7 +24,7 @@
 import re
 import unicodedata
 
-name = 'uni2ascii'
+name = "uni2ascii"
 
 
 class Global:
@@ -36,8 +36,6 @@ class Global:
     # Regexp of lhs of translits. Loaded the first time uni2ascii is called.
     unicode_re = None
 
-# end class Global
-
 
 def uni2ascii(line):
     """
@@ -47,14 +45,16 @@ def uni2ascii(line):
 
     if Global.translits is None:
         Global.translits = get_translits()
-        Global.unicodere = re.compile('|'.join(map(re.escape,
-                                                   sorted(Global.translits.keys(),
-                                                          key=len,
-                                                          reverse=True))))
-    return re.sub(Global.unicodere,
-                  lambda mo: Global.translits[mo.group()],
-                  unicodedata.normalize('NFC', line))
-# end uni2ascii()
+        Global.unicodere = re.compile(
+            "|".join(
+                map(re.escape, sorted(Global.translits.keys(), key=len, reverse=True))
+            )
+        )
+    return re.sub(
+        Global.unicodere,
+        lambda mo: Global.translits[mo.group()],
+        unicodedata.normalize("NFC", line),
+    )
 
 
 def get_translits():
@@ -143,6 +143,7 @@ def get_translits():
 ɑ       a
 ɡ       g
 ʻ       '
+‘       '
 ̂       ^
 ̑       ^
 ν       v
@@ -196,12 +197,12 @@ def get_translits():
 ︰      :
 """
     ret = {}
-    for line in translitstr.split('\n'):
+    for line in translitstr.split("\n"):
         line = line.strip()
-        if line.startswith('#') or line == '':
+        if line.startswith("#") or line == "":
             continue
         (lhs, rhs) = line.split()
-        ret[unicodedata.normalize('NFC', lhs)] = rhs
+        ret[unicodedata.normalize("NFC", lhs)] = rhs
 
     # The following are various width spaces with various other
     # interpretations (e.g. non-breaking). We render all these as a
@@ -210,8 +211,8 @@ def get_translits():
 
     whites = """ : : : : : : : : :​:‌:‍:⁠: : :　:﻿"""
 
-    for sp in whites.split(':'):
-        ret[sp] = ' '
+    for sp in whites.split(":"):
+        ret[sp] = " "
 
     # The following are very thin spaces. They seem to be used for
     # kerning rather than word separation, so we map them to
@@ -219,8 +220,7 @@ def get_translits():
 
     nothings = """ : """
 
-    for sp in nothings.split(':'):
-        ret[sp] = ''
+    for sp in nothings.split(":"):
+        ret[sp] = ""
 
     return ret
-# end translits()
