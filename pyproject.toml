@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uni2ascii-janin"
+version = "2.0.0"
+description = "Convert unicode characters that resemble ASCII to their equivalent."
+readme = { file = "README.md", content-type = "text/markdown" }
+authors = [
+    {name = "Adam Janin", email = "pypi@janin.org"}
+]
+license = {file = "LICENSE"}
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+]
+keywords = ["unicode", "ascii", "conversion"]
+
+[project.urls]
+Homepage = "https://github.com/ajanin/uni2ascii"
+
+[project.scripts]
+uni2ascii = "uni2ascii:main"  # Adjust if the script uses a different entry point
+
+[tool.setuptools]
+packages = ["uni2ascii"]  # Replace with the name of the package directory
+
