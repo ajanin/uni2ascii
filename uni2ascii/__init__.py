@@ -296,7 +296,7 @@ def main():
                     replace = Global.args.r
                 line = re.sub(r"[^\x00-\x7f]+", replace, line).strip()
         # If we get here, we should print a line
-        print(line, end="")
+        print(line.encode("ascii", "ignore").decode("utf-8"), end="")
 
 
 def parse_arguments(strs):
