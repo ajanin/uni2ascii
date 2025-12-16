@@ -28,7 +28,7 @@ import sys
 
 name = "uni2ascii"
 
-VERSION = "1.2.0"
+__version__ = "2.0.1"
 
 
 class Global:
@@ -302,7 +302,7 @@ def main():
 def parse_arguments(strs):
     parser = argparse.ArgumentParser(
         description="Replace utf8 characters that look similar to ASCII with their nearest ASCII equivalent. Version {VERSION}.".format(
-            VERSION=VERSION
+            VERSION=__version__
         )
     )
     parser.add_argument(
@@ -311,7 +311,9 @@ def parse_arguments(strs):
         default="WARNING",
         help="Logging level (default %(default)s).",
     )
-    parser.add_argument("-version", "--version", action="version", version=str(VERSION))
+    parser.add_argument(
+        "-version", "--version", action="version", version=str(__version__)
+    )
     mogroup = parser.add_mutually_exclusive_group()
     mogroup.add_argument(
         "-r", help="Replace remaining non-ascii characters with this string."

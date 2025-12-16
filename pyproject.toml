@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uni2ascii-janin"
-version = "2.0.0"
+version = "2.0.1"
 description = "Convert unicode characters that resemble ASCII to their equivalent."
 readme = { file = "README.md", content-type = "text/markdown" }
 authors = [
@@ -23,8 +23,9 @@ keywords = ["unicode", "ascii", "conversion"]
 Homepage = "https://github.com/ajanin/uni2ascii"
 
 [project.scripts]
-uni2ascii = "uni2ascii:main"  # Adjust if the script uses a different entry point
+uni2ascii = "uni2ascii:main"
 
 [tool.setuptools]
-packages = ["uni2ascii"]  # Replace with the name of the package directory
+packages = ["uni2ascii"]
+include-package-data = false
 
