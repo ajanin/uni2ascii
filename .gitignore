@@ -1,8 +1,26 @@
-build
-dist
-uni2ascii_janin.egg-info
+# Build artifacts
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Editor artifacts
 *#
 .#*
 ._*
 *~
-*.pyc
+.DS_Store
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# uv specific
+.uv/
+uv.lock
